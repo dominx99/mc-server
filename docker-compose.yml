@@ -23,6 +23,8 @@ services:
       - "traefik.docker.network=proxy"
       - traefik.tcp.routers.papermc.rule=HostSNI(`*`)
       - traefik.tcp.routers.papermc.entrypoints=minecraft
+    volumes:
+      - "./plugins:/data/plugins"
     networks:
       proxy:
         ipv4_address: 10.200.15.2
