@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  minecraft:
+    image: itzg/minecraft-server
+    ports:
+      - 25565:25565
+    volumes:
+      - "mc:/data"
+    environment:
+      EULA: "TRUE"
+      ONLINE_MODE: FALSE
+      TYPE: "PAPER"
+      ENABLE_RCON: "true"
+      RCON_PORT: 28016
+      VERSION: "1.19.2"
+      OVERRIDE_SERVER_PROPERTIES: TRUE
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+
+volumes:
+  mc:
+  rcon:
