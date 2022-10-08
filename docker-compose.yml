@@ -18,7 +18,19 @@ services:
     tty: true
     stdin_open: true
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - traefik.tcp.routers.papermc.rule=HostSNI(`*`)
+      - traefik.tcp.routers.papermc.entrypoints=minecraft
+    networks:
+      proxy:
+        ipv4_address: 10.200.15.2
 
 volumes:
   mc:
   rcon:
+
+networks:
+  proxy:
+    external: true
